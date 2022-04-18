@@ -1,12 +1,3 @@
-<table>
-    <thead>
-        <tr>
-
-        </tr>
-    </thead>
-</table>
-
-
 <table id="tabel1" class="table">
     <thead>
         <tr>

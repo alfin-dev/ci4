@@ -2,7 +2,6 @@
 <?= $this->section('content') ?>
 
 <div class="content">
-    <h1>Data Buku</h1>
     <div class="d-flex justify-content-center">
         <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#tambahmodal" onClick="create()">Create Data</button>
     </div><br>

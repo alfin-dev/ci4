@@ -102,7 +102,7 @@ class Home extends BaseController
                     'kode_pengarang'    => $this->request->getVar('pengarang'),
                     'kode_penerbit'     => $this->request->getVar('penerbit'),
                 ];
-                $simpan = $buku->tambah($data);
+                $simpan = $buku->insert($data);
                 if ($simpan) {
                     $this->output['sukses'] = true;
                     $this->output['pesan']  = 'Berhasil';

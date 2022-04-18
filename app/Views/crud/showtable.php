@@ -31,8 +31,8 @@
                 <td><?= $b['nama_pengarang'] ?></td>
                 <td><?= $b['nama_penerbit'] ?></td>
                 <td>
-                    <a href="javascript:;" data-toggle="modal" data-target="#tambahmodal" class="btn btn-warning" onClick="show(<?= $b['ISBN'] ?>)">Edit</a>
-                    <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#delete-modal-<?= $b['ISBN'] ?>" class="btn btn-danger">Delete</a>
+                    <a href="javascript:;" data-toggle="modal" data-target="#tambahmodal" class="btn btn-warning btn-sm" onClick="show(<?= $b['ISBN'] ?>)">Edit</a>
+                    <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#delete-modal-<?= $b['ISBN'] ?>" class="btn btn-danger btn-sm">Delete</a>
                     <!-- BEGIN: Modal Content -->
                     <div id="delete-modal-<?= $b['ISBN'] ?>" class="modal fade" tabindex="-1" aria-hidden="true">
                         <div class="modal-dialog">

@@ -43,16 +43,15 @@ class Home extends BaseController
         $data['buku'] = $this->buku->getBuku();
         $data['penerbit'] = $this->penerbit->get()->getResultArray();
         $data['pengarang'] = $this->pengarang->get()->getResultArray();
-        // dd($data['buku']);
+        // dd($data);
         return view('crud/create', $data);
-        $this->buku->insert([
-            'ISBN' => $this->request->getPost('isbn'),
-            'judul' => $this->request->getPost('judul'),
-            'jumlah_halaman' => $this->request->getPost('hal'),
-            'kode_pengarang' => $this->request->getPost('pengarang'),
-            'kode_penerbit' => $this->request->getPost('penerbit'),
-        ]);
-
+        // $this->buku->insert([
+        //     'ISBN' => $this->request->getPost('isbn'),
+        //     'judul' => $this->request->getPost('judul'),
+        //     'jumlah_halaman' => $this->request->getPost('hal'),
+        //     'kode_pengarang' => $this->request->getPost('pengarang'),
+        //     'kode_penerbit' => $this->request->getPost('penerbit'),
+        // ]);
         // return redirect('view');
     }
 
@@ -60,41 +59,8 @@ class Home extends BaseController
     {
         $buku = $this->buku;
         if ($this->request->isAJAX()) {
-            if (!$this->validate([
-                'isbn' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => '{field} Harus diisi'
-                    ]
-                ],
-                'judul' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => '{field} Harus diisi'
-                    ]
-                ],
-                'hal' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => '{field} Harus diisi'
-                    ]
-                ],
-                'pengarang' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => '{field} Harus diisi'
-                    ]
-                ],
-                'penerbit' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => '{field} Harus diisi'
-                    ]
-                ],
-            ])) {
-                // session()->setFlashdata('error', $this->validator->listErrors());
-                return redirect()->back()->withInput();
-            } else {
+            $cek = $this->buku->getwhereBuku($this->request->getVar('isbn'));
+            if ($cek == null) {
                 $data = [
                     'ISBN'              => $this->request->getVar('isbn'),
                     'judul'             => $this->request->getVar('judul'),
@@ -102,11 +68,14 @@ class Home extends BaseController
                     'kode_pengarang'    => $this->request->getVar('pengarang'),
                     'kode_penerbit'     => $this->request->getVar('penerbit'),
                 ];
-                $simpan = $buku->insert($data);
+                $simpan = $buku->tambah($data);
                 if ($simpan) {
                     $this->output['sukses'] = true;
                     $this->output['pesan']  = 'Berhasil';
                 }
+                echo json_encode($this->output);
+            } else {
+                $this->output['pesan']  = 'Gagal';
                 echo json_encode($this->output);
             }
         }

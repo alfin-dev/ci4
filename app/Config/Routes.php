@@ -36,7 +36,7 @@ $routes->get('/view', 'Home::view');
 $routes->get('/coba', 'Home::coba');
 $routes->get('/showtable', 'Home::showtable');
 $routes->get('/show/{id}', 'Home::showtable');
-$routes->add('/create', 'Home::create');
+$routes->get('/create', 'Home::create');
 $routes->add('ajax', 'Home::ajax');
 $routes->add('update', 'Home::update');
 

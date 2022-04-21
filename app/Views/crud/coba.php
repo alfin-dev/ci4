@@ -77,7 +77,7 @@
                 <td>Rizal</td>
                 <td>Surabaya</td>
                 <td>
-                    <button class="btn btn-sm btn-warning">Edit</button>
+                    <button class="btn btn-warning">Edit</button>
                     <button class="btn btn-sm btn-danger">Delete</button>
                 </td>
             </tr>

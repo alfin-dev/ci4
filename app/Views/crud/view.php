@@ -46,48 +46,6 @@
                 <div id="pagemodal">
                     <!-- modal disini -->
                 </div>
-                <!-- <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah Buku</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form action="<?= base_url('create') ?>" method="post">
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">ISBN :</label>
-                            <input type="text" class="form-control" id="recipient-name" name="isbn">
-                        </div>
-                        <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Judul :</label>
-                            <input type="text" class="form-control" id="recipient-name" name="judul">
-                        </div>
-                        <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Jumlah halaman :</label>
-                            <input type="text" class="form-control" id="recipient-name" name="hal">
-                        </div>
-                        <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Pengarang :</label>
-                            <select class="form-control" name="pengarang">
-                                <option selected>Open this select menu</option>
-                                <?php foreach ($pengarang as $p) { ?>
-                                    <option value="<?= $p['kode_pengarang'] ?>"><?= $p['nama_pengarang'] ?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Penerbit :</label>
-                            <select class="form-control" name="penerbit">
-                                <option selected>Open this select menu</option>
-                                <?php foreach ($penerbit as $p) { ?>
-                                    <option value="<?= $p['kode_penerbit'] ?>"><?= $p['nama_penerbit'] ?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
-                    </div>
-                </form> -->
             </div>
         </div>
     </div>
@@ -111,11 +69,23 @@
     //untuk proses create data
     function store() {
         console.log('klik proses')
+        var isbn = $("#isbn").val();
+        var judul = $("#judul").val();
+        var hal = $("#hal").val();
+        var pengarang = $("#pengarang").val();
+        var penerbit = $("#penerbit").val();
+        console.log(isbn)
         $.ajax({
             url: "<?php echo base_url('ajax') ?>",
             type: 'POST',
             dataType: 'JSON',
-            data: $('#form').serialize(),
+            data: {
+                "isbn": isbn,
+                "judul": judul,
+                "hal": hal,
+                "pengarang": pengarang,
+                "penerbit": penerbit,
+            },
             success: function(x) {
                 console.log(x)
                 if (x.sukses == true) {
@@ -123,6 +93,9 @@
                     $("#close").click()
                     showtable()
                     $("#pagemodal").html('')
+                }
+                else if(x.sukses == false) {
+                    alert('ISBN Sudah ada!')
                 }
             }
         });

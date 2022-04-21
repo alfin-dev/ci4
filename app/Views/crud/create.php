@@ -39,6 +39,6 @@
 
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" id="close" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" onClick="store()">Simpan</button>
+        <button type="button" class="btn btn-primary" onClick="store()">Simpan</button>
     </div>
 </form>
